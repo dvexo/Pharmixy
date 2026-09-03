@@ -1,0 +1,1380 @@
+<!doctype html>
+<!--
+  ============================================================================
+  Pharmixy — Privacy Policy
+  Standalone. No external CSS, JS, fonts, images or network requests.
+  Host this file at a stable HTTPS URL and enter that URL in Play Console →
+  App content → Privacy policy.
+
+  BEFORE PUBLISHING, replace the three highlighted placeholders in the page
+  (search for "todo"):
+    1. Dvexo's registered postal address                 (§ Contact Information)
+    2. The hosted account-deletion URL                   (§ Account & Data Deletion)
+    3. The application server's hosting provider/region  (§ International Transfers)
+  Also set the canonical/og:url below to this file's real address.
+
+  Every factual claim in this document was checked against the repository:
+    permissions      Pharmacy/composeApp/src/androidMain/AndroidManifest.xml
+    no SDKs          Pharmacy/gradle/libs.versions.toml
+    device id        .../core/platform/DeviceIdentity.kt
+    local files      .../data/local/LocalDataStorage.kt
+    HTTPS-only       .../androidMain/res/xml/network_security_config.xml
+    no backup        .../androidMain/res/xml/data_extraction_rules.xml
+    fields stored    Flask Site/backend/app/models/__init__.py
+    deletion         Flask Site/backend/app/services/auth_service.py :: delete_account
+    directory        Flask Site/backend/app/services/pharmacy_service.py :: search_directory
+    rate-limit IPs   Flask Site/backend/app/main.py :: rate_limit
+  ============================================================================
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy Policy · Pharmixy by Dvexo</title>
+
+<meta name="description" content="Privacy Policy for Pharmixy, the pharmacy management app for Android by Dvexo. What we collect, why, how it is protected, and how to delete your account and data.">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Dvexo">
+<meta name="theme-color" content="#0f766e" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+<!-- Set these to this page's real address once hosted. -->
+<link rel="canonical" href="https://dvexo.com/privacy-policy.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Privacy Policy · Pharmixy by Dvexo">
+<meta property="og:description" content="What Pharmixy collects, why, how it is protected, and how to delete your account and data.">
+<meta property="og:url" content="https://dvexo.com/privacy-policy.html">
+<meta property="og:site_name" content="Dvexo">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Privacy Policy · Pharmixy by Dvexo">
+<meta name="twitter:description" content="What Pharmixy collects, why, how it is protected, and how to delete your account and data.">
+
+<style>
+/* ---------------------------------------------------------------- tokens */
+:root{
+  --bg:#f6f7f9;
+  --surface:#ffffff;
+  --surface-2:#f2f5f7;
+  --ink:#131a22;
+  --ink-2:#4a5763;
+  --ink-3:#6b7885;
+  --line:#e2e7ec;
+  --line-2:#cfd7de;
+  --brand:#0f766e;
+  --brand-ink:#0b5c55;
+  --brand-wash:#e6f4f2;
+  --warn-wash:#fff6d9;
+  --warn-line:#e6c65c;
+  --warn-ink:#6b4e00;
+  --danger:#a8323b;
+  --radius:14px;
+  --maxw:1180px;
+  --shadow:0 1px 2px rgba(19,26,34,.05), 0 8px 28px -14px rgba(19,26,34,.22);
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#0b1220;
+    --surface:#111a2b;
+    --surface-2:#16203440;
+    --ink:#e8eef6;
+    --ink-2:#b3c0d0;
+    --ink-3:#8497ab;
+    --line:#22304a;
+    --line-2:#2d3d5c;
+    --brand:#5eead4;
+    --brand-ink:#99f6e4;
+    --brand-wash:#0d3b37;
+    --warn-wash:#3a2f08;
+    --warn-line:#8a7420;
+    --warn-ink:#f5e2a0;
+    --danger:#f2a1a8;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 30px -16px rgba(0,0,0,.8);
+  }
+}
+
+/* ------------------------------------------------------------------ base */
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font:16px/1.68 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif;
+  font-feature-settings:"kern" 1;
+  text-rendering:optimizeLegibility;
+}
+h1,h2,h3{line-height:1.25;letter-spacing:-.015em;margin:0}
+p,ul,ol,table{margin:0 0 1rem}
+a{color:var(--brand-ink);text-decoration-thickness:1px;text-underline-offset:3px}
+a:hover{text-decoration-thickness:2px}
+:focus-visible{outline:3px solid var(--brand);outline-offset:3px;border-radius:4px}
+code{
+  font-family:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
+  font-size:.87em;background:var(--surface-2);border:1px solid var(--line);
+  padding:.08em .38em;border-radius:5px;word-break:break-word;
+}
+hr{border:0;border-top:1px solid var(--line);margin:2.5rem 0}
+
+.skip{
+  position:absolute;left:-9999px;top:0;z-index:99;
+  background:var(--brand);color:#fff;padding:.7rem 1.1rem;border-radius:0 0 8px 0;font-weight:600;
+}
+.skip:focus{left:0}
+
+/* --------------------------------------------------------------- masthead */
+.masthead{
+  background:linear-gradient(180deg,var(--surface) 0%,var(--bg) 100%);
+  border-bottom:1px solid var(--line);
+}
+.masthead-inner{max-width:var(--maxw);margin:0 auto;padding:2.4rem 1.25rem 2rem}
+.brandline{display:flex;align-items:center;gap:.6rem;margin-bottom:1.5rem;flex-wrap:wrap}
+.mark{
+  width:34px;height:34px;flex:none;border-radius:9px;background:var(--brand);
+  color:#fff;display:grid;place-items:center;font-weight:800;font-size:1rem;letter-spacing:-.03em;
+}
+@media (prefers-color-scheme: dark){ .mark{color:#06231f} }
+.brandname{font-weight:700;font-size:1.02rem;letter-spacing:-.01em}
+.brandname a{color:inherit;text-decoration:none}
+.brandname a:hover{text-decoration:underline}
+.brandsep{color:var(--ink-3)}
+.brandapp{color:var(--ink-2);font-size:1.02rem}
+
+.eyebrow{
+  text-transform:uppercase;letter-spacing:.1em;font-size:.72rem;font-weight:700;
+  color:var(--brand-ink);margin:0 0 .5rem;
+}
+h1{font-size:clamp(1.9rem,1.3rem + 2.4vw,2.7rem)}
+.standfirst{color:var(--ink-2);font-size:1.06rem;max-width:62ch;margin:.85rem 0 0}
+
+.meta{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.5rem;padding:0;list-style:none}
+.meta li{
+  background:var(--surface);border:1px solid var(--line);border-radius:999px;
+  padding:.32rem .8rem;font-size:.83rem;color:var(--ink-2);
+}
+.meta b{color:var(--ink);font-weight:600}
+
+/* ------------------------------------------------------------------ shell */
+.shell{max-width:var(--maxw);margin:0 auto;padding:2.5rem 1.25rem 4rem;display:grid;gap:2.5rem}
+@media (min-width:980px){
+  .shell{grid-template-columns:250px minmax(0,1fr);gap:3.5rem;align-items:start}
+}
+
+/* -------------------------------------------------------------------- toc */
+.toc{font-size:.9rem}
+@media (min-width:980px){
+  .toc{position:sticky;top:1.5rem;max-height:calc(100vh - 3rem);overflow:auto}
+}
+.toc h2{
+  font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;
+  color:var(--ink-3);margin:0 0 .8rem;font-weight:700;
+}
+.toc ol{list-style:none;margin:0;padding:0;counter-reset:toc}
+.toc li{counter-increment:toc;border-left:2px solid var(--line);}
+.toc a{
+  display:block;padding:.36rem .75rem;color:var(--ink-2);text-decoration:none;line-height:1.4;
+}
+.toc a::before{content:counter(toc) ".";color:var(--ink-3);margin-right:.45rem;font-variant-numeric:tabular-nums}
+.toc a:hover{color:var(--brand-ink);background:var(--surface-2)}
+.toc details{margin-bottom:0}
+.toc summary{display:none}
+@media (max-width:979px){
+  .toc{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:.4rem .9rem}
+  .toc h2{display:none}
+  .toc summary{
+    display:block;cursor:pointer;font-weight:650;padding:.75rem .1rem;list-style:none;
+  }
+  .toc summary::-webkit-details-marker{display:none}
+  .toc summary::after{content:" ▾";color:var(--ink-3)}
+  .toc details[open] summary::after{content:" ▴"}
+  .toc ol{padding-bottom:.6rem}
+}
+
+/* ------------------------------------------------------------------- main */
+main{min-width:0}
+section{
+  scroll-margin-top:1.5rem;
+  padding-top:.5rem;
+  margin-bottom:2.75rem;
+}
+section:target > h2{color:var(--brand-ink)}
+section > h2{
+  font-size:1.35rem;margin:0 0 .9rem;padding-bottom:.55rem;border-bottom:1px solid var(--line);
+}
+section > h2 .num{
+  color:var(--ink-3);font-weight:600;font-variant-numeric:tabular-nums;margin-right:.5rem;font-size:.95rem;
+}
+h3{font-size:1.03rem;margin:1.75rem 0 .55rem;color:var(--ink)}
+ul,ol{padding-left:1.3rem}
+li{margin:.4rem 0}
+li > ul{margin-top:.4rem;margin-bottom:.4rem}
+strong{font-weight:650}
+
+/* ------------------------------------------------------------------ cards */
+.card{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:1.4rem 1.5rem;box-shadow:var(--shadow);
+}
+.card > :last-child{margin-bottom:0}
+.glance{margin-bottom:2.75rem}
+.glance h2{font-size:1.1rem;margin:0 0 .9rem}
+.glance ul{list-style:none;padding:0;margin:0;display:grid;gap:.7rem}
+@media (min-width:640px){ .glance ul{grid-template-columns:1fr 1fr;gap:.7rem 1.6rem} }
+.glance li{display:flex;gap:.6rem;align-items:flex-start;margin:0;font-size:.95rem;color:var(--ink-2)}
+.glance li::before{
+  content:"";flex:none;width:7px;height:7px;margin-top:.55rem;border-radius:50%;background:var(--brand);
+}
+.glance li b{color:var(--ink);font-weight:650}
+
+.note,.warn,.danger-box{
+  border:1px solid var(--line);border-left-width:4px;border-radius:10px;
+  padding:1rem 1.15rem;margin:1.25rem 0;font-size:.95rem;
+}
+.note{background:var(--brand-wash);border-left-color:var(--brand);color:var(--ink-2)}
+.note > :last-child,.warn > :last-child,.danger-box > :last-child{margin-bottom:0}
+.note b,.warn b{color:var(--ink)}
+.warn{background:var(--warn-wash);border-color:var(--warn-line);border-left-color:var(--warn-line);color:var(--warn-ink)}
+@media (prefers-color-scheme: dark){ .warn b{color:var(--warn-ink)} }
+.danger-box{background:var(--surface);border-left-color:var(--danger)}
+
+.todo{
+  background:var(--warn-wash);border:1px dashed var(--warn-line);color:var(--warn-ink);
+  padding:.1em .45em;border-radius:5px;font-weight:600;font-size:.93em;
+}
+
+/* ----------------------------------------------------------------- tables */
+.tablewrap{
+  overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);
+  margin:1.25rem 0;background:var(--surface);-webkit-overflow-scrolling:touch;
+}
+table{border-collapse:collapse;width:100%;margin:0;font-size:.91rem;min-width:36rem}
+caption{
+  text-align:left;padding:.9rem 1rem .1rem;color:var(--ink-3);font-size:.85rem;caption-side:top;
+}
+th,td{text-align:left;padding:.7rem 1rem;border-bottom:1px solid var(--line);vertical-align:top}
+thead th{
+  background:var(--surface-2);font-size:.76rem;text-transform:uppercase;letter-spacing:.06em;
+  color:var(--ink-2);font-weight:700;border-bottom:1px solid var(--line-2);white-space:nowrap;
+}
+tbody tr:last-child td{border-bottom:0}
+td b{font-weight:650}
+.yes{color:var(--brand-ink);font-weight:650}
+.no{color:var(--ink-3)}
+
+/* ---------------------------------------------------------------- contact */
+.contact-grid{display:grid;gap:1rem;margin:1.25rem 0 0}
+@media (min-width:620px){ .contact-grid{grid-template-columns:1fr 1fr} }
+.contact-item{
+  background:var(--surface-2);border:1px solid var(--line);border-radius:10px;padding:.9rem 1.05rem;
+}
+.contact-item span{
+  display:block;font-size:.74rem;text-transform:uppercase;letter-spacing:.08em;
+  color:var(--ink-3);font-weight:700;margin-bottom:.25rem;
+}
+.contact-item a,.contact-item p{font-size:.98rem;margin:0;word-break:break-word}
+
+.steps{counter-reset:step;list-style:none;padding:0;margin:1rem 0 0}
+.steps li{
+  counter-increment:step;position:relative;padding-left:2.4rem;margin:.8rem 0;
+}
+.steps li::before{
+  content:counter(step);position:absolute;left:0;top:.05rem;width:1.6rem;height:1.6rem;
+  border-radius:50%;background:var(--brand);color:#fff;display:grid;place-items:center;
+  font-size:.82rem;font-weight:700;
+}
+@media (prefers-color-scheme: dark){ .steps li::before{color:#06231f} }
+
+/* ----------------------------------------------------------------- footer */
+footer{
+  border-top:1px solid var(--line);background:var(--surface);
+}
+.footer-inner{
+  max-width:var(--maxw);margin:0 auto;padding:2rem 1.25rem 3rem;
+  color:var(--ink-3);font-size:.88rem;display:flex;flex-wrap:wrap;gap:.6rem 1.5rem;justify-content:space-between;
+}
+.footer-inner p{margin:0}
+.totop{white-space:nowrap}
+
+/* ------------------------------------------------------------------ print */
+@media print{
+  :root{--bg:#fff;--surface:#fff;--surface-2:#fff;--ink:#000;--ink-2:#222;--ink-3:#555;
+        --line:#bbb;--line-2:#999;--brand:#000;--brand-ink:#000;--brand-wash:#fff;--shadow:none}
+  body{font-size:10.5pt;line-height:1.5}
+  .skip,.toc,.totop,.masthead{background:#fff}
+  .toc,.skip,.totop{display:none !important}
+  .shell{display:block;padding:0;max-width:none}
+  .masthead{border-bottom:1.5pt solid #000}
+  .masthead-inner{padding:0 0 .8rem}
+  .card,.note,.warn,.danger-box,.tablewrap{border:1pt solid #999;box-shadow:none;break-inside:avoid}
+  section{break-inside:auto;margin-bottom:1.2rem}
+  section > h2{break-after:avoid;font-size:12pt}
+  h3{break-after:avoid}
+  table{min-width:0;font-size:9pt}
+  thead{display:table-header-group}
+  tr{break-inside:avoid}
+  a{color:#000;text-decoration:underline}
+  a[href^="http"]::after{content:" (" attr(href) ")";font-size:8.5pt;color:#555;word-break:break-all}
+  a[href^="#"]::after,a[href^="mailto"]::after{content:""}
+  .mark{border:1pt solid #000;color:#000;background:#fff}
+  footer{border-top:1pt solid #999}
+  .footer-inner{padding:.6rem 0 0}
+}
+@media (prefers-reduced-motion: reduce){ *{animation:none !important;transition:none !important} }
+</style>
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to policy content</a>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <div class="brandline">
+      <div class="mark" aria-hidden="true">D</div>
+      <div class="brandname"><a href="https://dvexo.com/">Dvexo</a></div>
+      <div class="brandsep" aria-hidden="true">/</div>
+      <div class="brandapp">Pharmixy for Android</div>
+    </div>
+
+    <p class="eyebrow">Legal</p>
+    <h1>Privacy Policy</h1>
+    <p class="standfirst">
+      This policy explains what the Pharmixy app and the service behind it collect,
+      why, who can see it, and how to delete it. It is written to match what the
+      software actually does — not what a template says it might.
+    </p>
+
+    <ul class="meta">
+      <li><b>Effective:</b> 3 September 2026</li>
+      <li><b>Last updated:</b> 3 September 2026</li>
+      <li><b>Applies to:</b> <code>com.pharmacy.management</code></li>
+      <li><b>Controller:</b> Dvexo</li>
+    </ul>
+  </div>
+</header>
+
+<div class="shell">
+
+  <!-- ============================================================ TOC -->
+  <aside class="toc" aria-label="Table of contents">
+    <details open>
+      <summary>Contents</summary>
+      <h2>Contents</h2>
+      <ol>
+        <li><a href="#introduction">Introduction &amp; Scope</a></li>
+        <li><a href="#collect">Information We Collect</a></li>
+        <li><a href="#personal">Personal Information</a></li>
+        <li><a href="#account">Account &amp; Authentication Data</a></li>
+        <li><a href="#device">Device &amp; Usage Information</a></li>
+        <li><a href="#permissions">App Permissions</a></li>
+        <li><a href="#storage">Cookies &amp; Local Storage</a></li>
+        <li><a href="#analytics">Analytics &amp; Diagnostics</a></li>
+        <li><a href="#thirdparty">AI &amp; Third-Party Services</a></li>
+        <li><a href="#use">How We Use Information</a></li>
+        <li><a href="#sharing">Data Sharing &amp; Disclosure</a></li>
+        <li><a href="#retention">Data Retention &amp; Deletion</a></li>
+        <li><a href="#security">Data Security</a></li>
+        <li><a href="#deletion">Account &amp; Data Deletion Request</a></li>
+        <li><a href="#children">Children’s Privacy</a></li>
+        <li><a href="#rights">Your Rights</a></li>
+        <li><a href="#transfers">International Data Transfers</a></li>
+        <li><a href="#links">Third-Party Links</a></li>
+        <li><a href="#changes">Changes to This Policy</a></li>
+        <li><a href="#contact">Contact Information</a></li>
+        <li><a href="#dates">Effective Date &amp; Versions</a></li>
+      </ol>
+    </details>
+  </aside>
+
+  <!-- =========================================================== MAIN -->
+  <main id="main">
+
+    <div class="card glance">
+      <h2>At a glance</h2>
+      <ul>
+        <li><b>No ads, no tracking, no analytics.</b> The app contains no advertising, analytics, attribution or crash-reporting SDK of any kind.</li>
+        <li><b>Two permissions.</b> Internet and network-state. Nothing else — no location, camera, contacts, microphone or storage.</li>
+        <li><b>We never sell your data.</b> It is not shared with anyone for advertising or marketing, ever.</li>
+        <li><b>No advertising ID.</b> The app does not read the Advertising ID or any hardware identifier.</li>
+        <li><b>You can delete everything.</b> In the app, in a few taps, immediately and permanently.</li>
+        <li><b>Encrypted in transit.</b> The app refuses unencrypted connections outright.</li>
+      </ul>
+    </div>
+
+    <!-- 1 -->
+    <section id="introduction">
+      <h2><span class="num">1</span>Introduction &amp; Scope</h2>
+      <p>
+        <strong>Pharmixy</strong> (“the app”) is a pharmacy management application for Android,
+        published by <strong>Dvexo</strong> (“we”, “us”, “our”) — the data controller responsible
+        for the personal information described here. Our website is
+        <a href="https://dvexo.com/">https://dvexo.com/</a>.
+      </p>
+      <p>This policy covers:</p>
+      <ul>
+        <li>the Android application with the package name <code>com.pharmacy.management</code>, distributed on Google Play; and</li>
+        <li>the backend service the app connects to, which stores your account and your pharmacy’s records.</li>
+      </ul>
+      <p>
+        It does not cover any other product, website or service, or anything you do outside the app —
+        including websites you reach by following a link from it.
+      </p>
+
+      <h3>Who the app is for</h3>
+      <p>
+        Pharmixy is a business tool for pharmacy owners and their staff. It is not intended for
+        consumers, patients or the general public, and it is not intended for children.
+      </p>
+
+      <h3>Two kinds of data, and who is responsible for each</h3>
+      <p>
+        The distinction matters, so it is stated plainly rather than buried:
+      </p>
+      <ul>
+        <li>
+          <strong>Your account data.</strong> Information about you as our user — your name, email
+          address, phone number and pharmacy details. <strong>Dvexo is the controller</strong> of this
+          data and this policy governs it.
+        </li>
+        <li>
+          <strong>Your business records.</strong> Information you enter about <em>your own</em>
+          customers, suppliers and patients while running your pharmacy.
+          <strong>You are the controller</strong> of that data; Dvexo processes and stores it on your
+          behalf, under your instructions, so that the app works. You are responsible for having a
+          lawful basis to collect it and for telling the people concerned how you use it.
+        </li>
+      </ul>
+
+      <div class="note">
+        <p>
+          <b>By using Pharmixy you accept this policy.</b> If you do not agree with it, please do not
+          use the app. If you disagree with a future change, you can delete your account at any time —
+          see <a href="#deletion">Account &amp; Data Deletion Request</a>.
+        </p>
+      </div>
+    </section>
+
+    <!-- 2 -->
+    <section id="collect">
+      <h2><span class="num">2</span>Information We Collect</h2>
+      <p>
+        Everything below is collected because a feature needs it. Nothing is collected
+        “just in case”, and nothing is collected in the background while you are not using the app.
+      </p>
+
+      <div class="tablewrap">
+        <table>
+          <caption>Summary of all data the app and service handle.</caption>
+          <thead>
+            <tr>
+              <th scope="col">Category</th>
+              <th scope="col">What exactly</th>
+              <th scope="col">Source</th>
+              <th scope="col">Required?</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>Identity</b></td>
+              <td>Full name, email address, phone number</td>
+              <td>You type it when registering</td>
+              <td>Required</td>
+            </tr>
+            <tr>
+              <td><b>Credentials</b></td>
+              <td>Password (stored only as a salted Argon2 hash)</td>
+              <td>You type it</td>
+              <td>Required</td>
+            </tr>
+            <tr>
+              <td><b>Pharmacy profile</b></td>
+              <td>Trade name; country, division, district, city/area, union/ward, street address, postal code</td>
+              <td>You type or select it from a list built into the app</td>
+              <td>Name required; address optional</td>
+            </tr>
+            <tr>
+              <td><b>Device record</b></td>
+              <td>A random per-installation ID, device name (make and model), platform, app version, last-seen time</td>
+              <td>Generated by the app</td>
+              <td>Automatic</td>
+            </tr>
+            <tr>
+              <td><b>Business records</b></td>
+              <td>Medicines, stock batches, purchases, sales, expenses, stock alerts, settings</td>
+              <td>You enter them</td>
+              <td>Optional — you choose what to record</td>
+            </tr>
+            <tr>
+              <td><b>Third-party contacts</b></td>
+              <td>Customer and supplier names, phone numbers, email addresses, addresses, outstanding balances</td>
+              <td>You enter them</td>
+              <td>Optional</td>
+            </tr>
+            <tr>
+              <td><b>Prescription records</b></td>
+              <td>Patient name and phone, prescribing doctor’s name, medicines prescribed, notes</td>
+              <td>You enter them</td>
+              <td>Optional</td>
+            </tr>
+            <tr>
+              <td><b>Team members</b></td>
+              <td>Name, email, phone and role of staff you add to your pharmacy</td>
+              <td>You enter them</td>
+              <td>Optional</td>
+            </tr>
+            <tr>
+              <td><b>Subscription</b></td>
+              <td>Plan, status, start and expiry dates</td>
+              <td>Set by us</td>
+              <td>Automatic</td>
+            </tr>
+            <tr>
+              <td><b>Server logs</b></td>
+              <td>Routine access and error logs, including the address a request came from; plus a short-lived in-memory count of sign-in attempts per address</td>
+              <td>Automatic</td>
+              <td>Automatic</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="warn">
+        <p>
+          <b>Health information.</b> If you use the Prescriptions feature, the records you create
+          contain health information about identifiable people — a patient’s name and phone number
+          alongside the medicines prescribed to them. We store it so the feature works; we do not
+          analyse it, profile anyone from it, or use it for any purpose other than showing it back to
+          your pharmacy. Please only enter what you are permitted to under the laws that apply to you.
+        </p>
+      </div>
+
+      <h3>What we do <em>not</em> collect</h3>
+      <p>Stated explicitly, because absence is hard to prove from a list of what is present:</p>
+      <ul>
+        <li><strong>No location.</strong> The app never reads GPS, Wi-Fi or cell-tower location. The place names you see are a fixed reference list packaged inside the app; choosing one is you typing an address, not the app finding you.</li>
+        <li><strong>No advertising identifier</strong>, and no hardware identifier such as IMEI, MAC address or Android ID.</li>
+        <li><strong>No contacts, photos, camera, microphone, calendar, SMS, call logs or files</strong> from your device.</li>
+        <li><strong>No browsing history</strong>, and no tracking across other apps or websites.</li>
+        <li><strong>No biometric data</strong>, and no installed-app list.</li>
+        <li><strong>No payment card or bank details.</strong> The app has no in-app purchase flow and never asks for card, bank or mobile-wallet credentials.</li>
+      </ul>
+
+      <h3>How this maps to the Google Play Data safety section</h3>
+      <p>
+        Google Play shows a Data safety summary on the app’s store listing. The table below is the
+        same information in Play’s own vocabulary, so that what you read here and what you read on
+        Play agree. <strong>None of it is shared</strong> — under Play’s definition, transferring data
+        to a hosting provider acting on our instructions is processing, not sharing.
+      </p>
+
+      <div class="tablewrap">
+        <table>
+          <caption>Data safety declaration for <code>com.pharmacy.management</code>.</caption>
+          <thead>
+            <tr>
+              <th scope="col">Play data type</th>
+              <th scope="col">Collected</th>
+              <th scope="col">Shared</th>
+              <th scope="col">Optional?</th>
+              <th scope="col">Purpose</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Personal info — Name</td><td class="yes">Yes</td><td class="no">No</td><td>Required</td><td>App functionality; Account management</td></tr>
+            <tr><td>Personal info — Email address</td><td class="yes">Yes</td><td class="no">No</td><td>Required</td><td>App functionality; Account management</td></tr>
+            <tr><td>Personal info — Phone number</td><td class="yes">Yes</td><td class="no">No</td><td>Required</td><td>App functionality; Account management</td></tr>
+            <tr><td>Personal info — User IDs</td><td class="yes">Yes</td><td class="no">No</td><td>Required</td><td>App functionality; Account management</td></tr>
+            <tr><td>Personal info — Address</td><td class="yes">Yes</td><td class="no">No</td><td>Optional</td><td>App functionality</td></tr>
+            <tr><td>Personal info — Other info <span class="no">(customer, supplier and staff contact details you enter)</span></td><td class="yes">Yes</td><td class="no">No</td><td>Optional</td><td>App functionality</td></tr>
+            <tr><td>Health and fitness — Health info <span class="no">(prescription records)</span></td><td class="yes">Yes</td><td class="no">No</td><td>Optional</td><td>App functionality</td></tr>
+            <tr><td>Financial info — Other financial info <span class="no">(sales, purchases, expenses, balances)</span></td><td class="yes">Yes</td><td class="no">No</td><td>Optional</td><td>App functionality</td></tr>
+            <tr><td>App activity — Other user-generated content <span class="no">(inventory, notes)</span></td><td class="yes">Yes</td><td class="no">No</td><td>Optional</td><td>App functionality</td></tr>
+            <tr><td>Device or other IDs</td><td class="yes">Yes</td><td class="no">No</td><td>Required</td><td>App functionality; Fraud prevention, security and compliance</td></tr>
+            <tr><td>Financial info — User payment info</td><td class="no">No</td><td class="no">No</td><td>—</td><td>—</td></tr>
+            <tr><td>Location — Approximate or precise</td><td class="no">No</td><td class="no">No</td><td>—</td><td>—</td></tr>
+            <tr><td>App activity — App interactions, search history, installed apps</td><td class="no">No</td><td class="no">No</td><td>—</td><td>—</td></tr>
+            <tr><td>App info and performance — Crash logs, diagnostics</td><td class="no">No</td><td class="no">No</td><td>—</td><td>—</td></tr>
+            <tr><td>Contacts, Messages, Photos and videos, Audio, Files and docs, Calendar, Web browsing</td><td class="no">No</td><td class="no">No</td><td>—</td><td>—</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>We also declare the following security practices, each of which is described in <a href="#security">Data Security</a>:</p>
+      <ul>
+        <li><strong>Data is encrypted in transit</strong> — yes.</li>
+        <li><strong>You can request that your data be deleted</strong> — yes, and you can do it yourself in the app.</li>
+        <li><strong>Independent security review</strong> — none has been carried out, and we do not claim one.</li>
+      </ul>
+
+      <div class="note">
+        <p>
+          <b>On search queries.</b> Searching the medicine catalogue or the pharmacy directory sends
+          what you typed to our service so it can answer. The query is used to produce the result and
+          is then discarded: it is not saved against your account and no search history is ever built
+          — which is why “in-app search history” is declared as not collected. As with any web
+          request, the address it was sent to may appear in the routine server access log described in
+          <a href="#device">Device &amp; Usage Information</a>.
+        </p>
+      </div>
+    </section>
+
+    <!-- 3 -->
+    <section id="personal">
+      <h2><span class="num">3</span>Personal Information</h2>
+      <p>To create an account, the app asks for:</p>
+      <ul>
+        <li><strong>Your full name</strong> — shown in the app and attributed to actions such as recording a sale.</li>
+        <li><strong>Your email address</strong> — your sign-in identifier and how we reach you about your account.</li>
+        <li><strong>Your phone number</strong> — an alternative sign-in identifier and a support contact.</li>
+        <li><strong>Your pharmacy’s name</strong> — the workspace your records belong to.</li>
+      </ul>
+      <p>
+        Email addresses and phone numbers must be unique across the service, so registration will tell
+        you if one is already in use.
+      </p>
+
+      <h3>Address information</h3>
+      <p>
+        You may optionally record a country, division, district, city or area, union or ward, street
+        address and postal code for your pharmacy. The division, district, area and union values are
+        chosen from an administrative reference list that ships inside the app; selecting from it does
+        not contact any server and does not reveal where you are.
+      </p>
+
+      <h3>Information about other people</h3>
+      <p>
+        Customer, supplier, patient and staff details are personal information about people who are
+        not our users. We hold it only to provide the app to you, and we never contact those people,
+        market to them, or use their details for any purpose of our own.
+      </p>
+    </section>
+
+    <!-- 4 -->
+    <section id="account">
+      <h2><span class="num">4</span>Account &amp; Authentication Data</h2>
+
+      <h3>Passwords</h3>
+      <p>
+        Your password is never stored in a readable form. It is hashed with <strong>Argon2</strong>, a
+        memory-hard algorithm, and only the hash is saved. We cannot read, recover or tell you your
+        password — if you lose it, it has to be reset, not retrieved.
+      </p>
+
+      <h3>Sessions</h3>
+      <p>Signing in issues two tokens, held in the app’s private storage on your device:</p>
+      <ul>
+        <li>an <strong>access token</strong>, valid for one hour, sent with each request; and</li>
+        <li>a <strong>refresh token</strong>, valid for thirty days, used to obtain a new access token so you are not signed out mid-shift.</li>
+      </ul>
+      <p>
+        When you sign out or delete your account, the token you were using is added to a revocation
+        list on the server, so a copy of it stops working immediately rather than remaining valid for
+        the rest of its lifetime.
+      </p>
+
+      <h3>Roles and access</h3>
+      <p>
+        Your role and permissions decide what you can see and do. They are held on the server and
+        checked there on every request. The app cannot grant itself a role, a permission or a
+        subscription plan; a modified copy of the app gains no additional access.
+      </p>
+
+      <h3>Separation between pharmacies</h3>
+      <p>
+        Every record belongs to exactly one pharmacy, and every request proves your membership of that
+        pharmacy in the database before any data is returned. A request for a pharmacy you do not
+        belong to is refused outright.
+      </p>
+    </section>
+
+    <!-- 5 -->
+    <section id="device">
+      <h2><span class="num">5</span>Device &amp; Usage Information</h2>
+      <p>
+        So that you can see which devices are signed in to your account, and so an error can be
+        attributed to a particular app version, each installation registers:
+      </p>
+      <ul>
+        <li>
+          <strong>An installation identifier</strong> — a random value generated on your device the
+          first time the app runs, stored in the app’s private folder. It is not derived from any
+          hardware identifier, is not shared with anyone, and is not used for advertising or
+          cross-app tracking. Uninstalling the app destroys it; reinstalling produces a new one.
+        </li>
+        <li><strong>A device name</strong>, from the manufacturer and model reported by Android — for example “Google Pixel 8”.</li>
+        <li><strong>The platform</strong> (“android”) and the <strong>app version</strong> you are running.</li>
+        <li><strong>The time the device last contacted the service.</strong></li>
+      </ul>
+      <h3>Server logs</h3>
+      <p>Like any internet service, our servers keep two kinds of log:</p>
+      <ul>
+        <li>
+          <strong>An access log</strong>, recording each request — the time, the address it came from,
+          the endpoint called and the response status. This is standard operational logging, used to
+          diagnose faults and investigate abuse. It is rotated in the ordinary course of operations
+          and is not loaded into any analytics system.
+        </li>
+        <li>
+          <strong>An error log</strong>, written when a request fails, so the fault can be found and
+          fixed.
+        </li>
+      </ul>
+      <p>
+        Separately, the IP address of sign-in, registration and password-change attempts is counted so
+        that repeated attempts can be rate-limited. That counter lives in the server’s memory for a
+        few minutes and is <strong>never written to the database</strong> or attached to your account.
+      </p>
+      <p>
+        We do <strong>not</strong> record which screens you visit, how long you spend in the app, what
+        you tap, or any other behavioural telemetry.
+      </p>
+    </section>
+
+    <!-- 6 -->
+    <section id="permissions">
+      <h2><span class="num">6</span>App Permissions</h2>
+      <p>The app declares exactly two Android permissions, and no others:</p>
+
+      <div class="tablewrap">
+        <table>
+          <caption>Every permission in the app’s manifest.</caption>
+          <thead>
+            <tr><th scope="col">Permission</th><th scope="col">Why it is needed</th><th scope="col">Prompt?</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>android.permission.INTERNET</code></td>
+              <td>To reach our service so your records sync and you can sign in.</td>
+              <td>None — a normal permission granted at install.</td>
+            </tr>
+            <tr>
+              <td><code>android.permission.ACCESS_NETWORK_STATE</code></td>
+              <td>To tell whether you are online, so the app can show an accurate offline indicator and queue changes instead of failing.</td>
+              <td>None — a normal permission granted at install.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>
+        Neither is a “dangerous” or sensitive permission, so Android never asks you to approve them and
+        there is nothing to revoke. The app requests <strong>no</strong> location, camera, microphone,
+        contacts, storage, SMS, call-log, calendar or notification permission, and declares no
+        restricted permission of any kind.
+      </p>
+    </section>
+
+    <!-- 7 -->
+    <section id="storage">
+      <h2><span class="num">7</span>Cookies &amp; Local Storage</h2>
+
+      <h3>Cookies</h3>
+      <p>
+        <strong>The app uses no cookies.</strong> It contains no web view, no embedded browser and no
+        advertising or tracking pixel; it talks to our service directly over HTTPS. This policy page
+        itself sets no cookies and loads nothing from any third party — no fonts, no scripts, no
+        analytics.
+      </p>
+
+      <h3>Storage on your device</h3>
+      <p>
+        Pharmixy keeps a local copy of your data so that it opens instantly and keeps working when the
+        network does not. That copy lives in the app’s <strong>private storage</strong>, which other
+        apps cannot read, and holds:
+      </p>
+      <ul>
+        <li>your pharmacy’s records — medicines, batches, sales, purchases, customers, suppliers, prescriptions and expenses;</li>
+        <li>your session tokens;</li>
+        <li>changes made offline, waiting to be sent;</li>
+        <li>a sync position marker, your subscription status and your app preferences; and</li>
+        <li>the installation identifier described above.</li>
+      </ul>
+      <p>
+        This local copy is deliberately <strong>excluded from Android cloud backup and from
+        device-to-device transfer</strong>, so your records and session tokens are not copied off the
+        handset by the operating system. <strong>Uninstalling the app deletes all of it.</strong>
+      </p>
+
+      <h3>Copying data out of the app</h3>
+      <p>
+        The Backup screen can generate a backup of your records as text and place it on your device’s
+        clipboard, so you can paste it wherever you choose to keep it. What happens to it afterwards is
+        entirely in your hands — anything you paste into another app is governed by that app’s privacy
+        policy, not ours. Be aware that other apps may be able to read the clipboard.
+      </p>
+    </section>
+
+    <!-- 8 -->
+    <section id="analytics">
+      <h2><span class="num">8</span>Analytics &amp; Diagnostics</h2>
+      <div class="note">
+        <p>
+          <b>The app contains no analytics SDK, no crash-reporting SDK, no attribution SDK and no
+          advertising SDK.</b> There is no Firebase Analytics, no Google Analytics, no Crashlytics, no
+          Sentry, no Facebook SDK, no AppsFlyer and no equivalent. We collect no usage statistics,
+          build no behavioural profile, and run no A/B tests on you.
+        </p>
+      </div>
+      <p>
+        The app’s entire third-party code consists of the Android platform libraries (AndroidX), the
+        Jetpack Compose user-interface toolkit and the Kotlin standard libraries. These render the
+        interface and run the code; none of them collects data or contacts a server of its own.
+      </p>
+      <p>
+        On our side, we keep the routine access and error logs described in
+        <a href="#device">Device &amp; Usage Information</a>, so that faults can be found and fixed.
+        An error log may contain the request that failed and the account it came from. These logs are
+        used for diagnosis and abuse investigation only, never for profiling or marketing, and they
+        are not fed into any analytics product.
+      </p>
+      <h3>Diagnostics collected by Google, not by us</h3>
+      <p>
+        Because Pharmixy is distributed through Google Play, Android may report crashes and
+        performance data about the app to Google, which we see only as anonymous aggregate statistics
+        in the Play Console. That collection is performed by Google under
+        <a href="https://policies.google.com/privacy" rel="noopener noreferrer">Google’s Privacy Policy</a>
+        and your device settings, not by code we wrote. We never receive your identity through it.
+      </p>
+    </section>
+
+    <!-- 9 -->
+    <section id="thirdparty">
+      <h2><span class="num">9</span>AI &amp; Third-Party Services</h2>
+
+      <h3>Artificial intelligence</h3>
+      <div class="note">
+        <p>
+          <b>Pharmixy uses no artificial intelligence or machine-learning service whatsoever.</b>
+          Your data — and in particular your prescription and customer records — is never sent to any
+          AI provider, never used to train any model, and never processed by any generative or
+          predictive system. There is no on-device model either. Every calculation the app performs is
+          ordinary arithmetic over your own records.
+        </p>
+      </div>
+
+      <h3>Service providers we do use</h3>
+      <div class="tablewrap">
+        <table>
+          <caption>The complete list of third parties involved in running the service.</caption>
+          <thead>
+            <tr><th scope="col">Provider</th><th scope="col">Role</th><th scope="col">What it can access</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>Supabase</b></td>
+              <td>Managed PostgreSQL database hosting</td>
+              <td>Stores the service’s data at rest, as our processor. It does not use the data for its own purposes.</td>
+            </tr>
+            <tr>
+              <td><b>Google Play</b> (Google LLC)</td>
+              <td>App distribution and updates</td>
+              <td>Your Google account relationship with Play — installation, updates and Play’s own diagnostics. We do not receive your Google identity.</td>
+            </tr>
+            <tr>
+              <td><b>Our application hosting provider</b></td>
+              <td>Runs the API server</td>
+              <td>Operates the server the app connects to. <span class="todo">[Provider to be confirmed before publication]</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p>
+        These providers act on our instructions and are not permitted to use your data for their own
+        purposes. There is no other third party in the path: no advertising network, no data broker,
+        no analytics vendor, no email or SMS provider, and no payment gateway.
+      </p>
+
+      <h3>Notifications</h3>
+      <p>
+        Notifications in Pharmixy — low-stock warnings, expiry alerts and similar — are generated by
+        our own service and shown <strong>inside the app</strong>. The app does not currently register
+        for Android push notifications and includes no push messaging library, which is why it needs no
+        notification permission. If that changes, this policy will be updated before the feature ships.
+      </p>
+
+      <h3>Email and SMS</h3>
+      <p>
+        The service currently sends no email and no SMS of any kind — not for verification, not for
+        password resets, and not for marketing. Your email address and phone number are used to
+        identify your account and so that our support team can reply when you contact us.
+      </p>
+    </section>
+
+    <!-- 10 -->
+    <section id="use">
+      <h2><span class="num">10</span>How We Use Information</h2>
+      <p>We use the information described above only for these purposes:</p>
+
+      <div class="tablewrap">
+        <table>
+          <caption>Purpose of each category of data.</caption>
+          <thead>
+            <tr><th scope="col">Purpose</th><th scope="col">Data used</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>To provide the app</b> — store your records, keep them consistent across your devices, and show them back to you</td>
+              <td>Business records, pharmacy profile, settings</td>
+            </tr>
+            <tr>
+              <td><b>To sign you in and keep you signed in</b></td>
+              <td>Email or phone, password hash, session tokens, installation identifier</td>
+            </tr>
+            <tr>
+              <td><b>To keep your account secure</b> — limit repeated sign-in attempts, revoke sessions, show you which devices are signed in</td>
+              <td>Device record, IP address of sign-in attempts (in memory only), revocation records</td>
+            </tr>
+            <tr>
+              <td><b>To manage your subscription</b> — apply the limits of your plan and record its status</td>
+              <td>Subscription record, pharmacy identity</td>
+            </tr>
+            <tr>
+              <td><b>To support you</b> when you contact us with a problem</td>
+              <td>Name, email, phone, and the specific records relevant to your question</td>
+            </tr>
+            <tr>
+              <td><b>To fix faults</b> and keep the service running correctly</td>
+              <td>Server error logs, app version</td>
+            </tr>
+            <tr>
+              <td><b>To meet legal obligations</b> and respond to lawful requests</td>
+              <td>Whatever the obligation specifically requires</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>We do <strong>not</strong> use your information to:</p>
+      <ul>
+        <li>show you advertising, or build an advertising profile;</li>
+        <li>sell, rent or trade it to anyone;</li>
+        <li>train artificial-intelligence models;</li>
+        <li>track you across other apps or websites; or</li>
+        <li>make automated decisions that produce legal or similarly significant effects about you.</li>
+      </ul>
+
+      <h3>Legal bases</h3>
+      <p>Where a data protection law requires us to identify a legal basis, we rely on:</p>
+      <ul>
+        <li><strong>Performance of a contract</strong> — to give you the service you signed up for;</li>
+        <li><strong>Legitimate interests</strong> — to secure the service, prevent abuse and fix faults, balanced against your rights; and</li>
+        <li><strong>Legal obligation</strong> — where a law requires us to retain or produce something.</li>
+      </ul>
+    </section>
+
+    <!-- 11 -->
+    <section id="sharing">
+      <h2><span class="num">11</span>Data Sharing &amp; Disclosure</h2>
+      <div class="note">
+        <p><b>We do not sell your personal information, and we never share it for advertising or marketing.</b></p>
+      </div>
+      <p>Your information is disclosed only in these circumstances:</p>
+      <ul>
+        <li>
+          <strong>To staff of your own pharmacy.</strong> People who are members of your pharmacy can
+          see the records their role permits. Membership and roles are controlled by the pharmacy
+          owner, and a member’s access ends as soon as they are removed. Members are managed through
+          the service; the Android app currently only lists them.
+        </li>
+        <li>
+          <strong>To our service providers</strong>, listed in
+          <a href="#thirdparty">AI &amp; Third-Party Services</a>, strictly to run the service on our
+          behalf.
+        </li>
+        <li>
+          <strong>To our platform operators.</strong> A small number of authorised Dvexo staff can
+          access accounts through an internal administration panel in order to provide support,
+          activate subscriptions and investigate abuse. Actions that change your service — suspending
+          an account, granting a plan, confirming a payment — are recorded in an audit trail
+          identifying who did what and when.
+        </li>
+        <li>
+          <strong>When the law requires it</strong> — in response to a valid legal process, or where
+          disclosure is necessary to protect someone’s safety or to investigate fraud or abuse.
+        </li>
+        <li>
+          <strong>In a business transfer.</strong> If Dvexo is involved in a merger, acquisition or
+          sale of assets, your information may transfer to the successor. We will notify you, and the
+          successor remains bound by this policy until it is lawfully replaced.
+        </li>
+      </ul>
+
+      <h3>The pharmacy directory</h3>
+      <p>
+        So that pharmacies can find one another, a signed-in user can search a directory of
+        pharmacies. It returns <strong>only a pharmacy’s trade name and its general area</strong>
+        (upazila, district and division) — deliberately nothing else. Contact details, ownership,
+        stock, customers and every other record are never included. Only pharmacies with an active
+        account appear, and your own is excluded from your results.
+      </p>
+      <p>
+        If you would rather your pharmacy did not appear in that directory, email us and we will
+        remove it from the listing.
+      </p>
+
+      <h3>Sharing between pharmacies</h3>
+      <p>
+        The app contains screens for collaborating with another pharmacy.
+        <strong>That feature is not currently active, and no data is shared between pharmacies
+        today.</strong> Nothing you record leaves your own pharmacy’s workspace. Should collaboration
+        be switched on in a future release, it will be something you opt into for a specific partner
+        and specific categories of data, and this policy will be updated before it ships.
+      </p>
+    </section>
+
+    <!-- 12 -->
+    <section id="retention">
+      <h2><span class="num">12</span>Data Retention &amp; Deletion</h2>
+      <p>
+        <strong>We keep your data for as long as your account exists, and no automatic process deletes
+        it.</strong> Your records are yours; we do not expire them, archive them away from you, or
+        remove them because you stopped using the app for a while.
+      </p>
+
+      <div class="note">
+        <p>
+          <b>If a paid plan lapses, your data is not deleted.</b> Features that belong to the paid
+          plan stop being available, but every record you created remains, and returns in full when
+          the plan is renewed.
+        </p>
+      </div>
+
+      <h3>What happens when you delete your account</h3>
+      <p>Deletion is immediate and permanent. It removes:</p>
+      <ul>
+        <li>your user profile — name, email address, phone number and password hash;</li>
+        <li>every pharmacy you own, and with it every medicine, batch, sale, purchase, supplier, customer, prescription, expense, alert, notification and setting belonging to it;</li>
+        <li>your registered devices and every active session; and</li>
+        <li>the local copy on your device, which is removed when you uninstall the app.</li>
+      </ul>
+      <p>
+        Pharmacies where you are a member but not the owner are <strong>not</strong> deleted — that
+        data belongs to the owner, who may still be relying on it. Your membership of them ends.
+      </p>
+
+      <div class="danger-box">
+        <p>
+          <b>There is no undo and no recovery period.</b> Deleted data is gone. If you want to keep a
+          copy, generate a backup from the Backup screen <em>before</em> you delete the account.
+        </p>
+      </div>
+
+      <h3>What may be kept afterwards</h3>
+      <ul>
+        <li><strong>Records the law requires us to retain</strong> — such as financial or tax records of completed transactions — for the period the applicable law specifies, and then deleted.</li>
+        <li><strong>Security and audit records</strong> needed to investigate fraud or abuse, kept for as long as that purpose requires.</li>
+        <li><strong>Server error logs</strong>, which are rotated in the ordinary course of operations.</li>
+      </ul>
+      <p>Nothing retained is used to rebuild your account, to contact you, or for marketing.</p>
+    </section>
+
+    <!-- 13 -->
+    <section id="security">
+      <h2><span class="num">13</span>Data Security</h2>
+      <p>The measures below are implemented in the software, not merely intended:</p>
+      <ul>
+        <li>
+          <strong>Encryption in transit.</strong> All communication between the app and our service
+          uses HTTPS. The app is configured to <strong>refuse unencrypted connections outright</strong>,
+          so a downgrade attempt or a misconfigured address fails rather than sending your session in
+          the clear.
+        </li>
+        <li>
+          <strong>Passwords are never stored readably.</strong> Only a salted Argon2 hash is kept —
+          a memory-hard algorithm chosen to make offline cracking expensive.
+        </li>
+        <li>
+          <strong>Short-lived sessions with real revocation.</strong> Access tokens last one hour, and
+          signing out revokes the token immediately instead of waiting for it to expire.
+        </li>
+        <li>
+          <strong>Enforced separation between pharmacies.</strong> Access is proved against the
+          database on every request; there is no silent fallback to your own data that could hide a
+          failed attempt.
+        </li>
+        <li>
+          <strong>Server-side authorisation.</strong> Roles, permissions and subscription status are
+          decided by the server and never taken from the app, so modifying the app grants nothing.
+        </li>
+        <li>
+          <strong>Rate limiting</strong> on sign-in, registration and password changes, to blunt
+          automated guessing.
+        </li>
+        <li>
+          <strong>Private on-device storage</strong>, excluded from cloud backup and device transfer,
+          and removed on uninstall.
+        </li>
+        <li>
+          <strong>Least-privilege internal access</strong>, with an audit trail for administrative
+          actions that affect an account.
+        </li>
+      </ul>
+      <p>
+        Our database is hosted on managed infrastructure operated by Supabase, which states that it
+        encrypts data at rest; that protection is provided by them, under their terms.
+      </p>
+      <div class="warn">
+        <p>
+          <b>No system is perfectly secure.</b> We cannot guarantee absolute security, and we do not
+          claim to. You also have a part in it: choose a strong, unique password, do not share your
+          account, and sign out on devices you no longer use. If you believe your account has been
+          compromised, contact us at
+          <a href="mailto:bitwithlab@gmail.com">bitwithlab@gmail.com</a> immediately.
+        </p>
+      </div>
+      <p>
+        If a breach affects your personal information, we will notify you and any relevant regulator
+        as the applicable law requires.
+      </p>
+    </section>
+
+    <!-- 14 -->
+    <section id="deletion">
+      <h2><span class="num">14</span>Account &amp; Data Deletion Request</h2>
+      <p>
+        You can delete your Pharmixy account and its data yourself, at any time, without asking us and
+        without giving a reason.
+      </p>
+
+      <div class="card">
+        <h3 style="margin-top:0">Delete it yourself, in the app</h3>
+        <ol class="steps">
+          <li>Open <strong>Pharmixy</strong> and go to <strong>Settings</strong>.</li>
+          <li>Scroll to the <strong>ACCOUNT</strong> section at the bottom of the screen.</li>
+          <li>Tap <strong>Delete account</strong>.</li>
+          <li>Read what the confirmation lists, then tap <strong>Delete permanently</strong>.</li>
+        </ol>
+        <p style="margin-top:1rem;margin-bottom:0">
+          Deletion takes effect immediately and cannot be undone.
+        </p>
+      </div>
+
+      <h3>If you have already uninstalled the app</h3>
+      <p>
+        You do not need to reinstall it. Email
+        <a href="mailto:bitwithlab@gmail.com?subject=Account%20and%20data%20deletion%20request">bitwithlab@gmail.com</a>
+        <strong>from the address registered to the account</strong>, with the subject
+        “Account and data deletion request”, so that it is not mistaken for a support question. A
+        web request form is also published at
+        <span class="todo">[Deletion request URL — to be published before release]</span>.
+      </p>
+      <p>
+        We verify that a request comes from the account holder before acting on it, and complete
+        verified requests <strong>within 30 days</strong>. What is deleted, what is kept and for how
+        long is set out in <a href="#retention">Data Retention &amp; Deletion</a>.
+      </p>
+
+      <h3>Deleting some data without closing your account</h3>
+      <p>
+        You do not have to delete everything to delete something. Individual
+        <strong>medicines, customers, suppliers and expenses</strong> can be deleted inside the app,
+        and your pharmacy’s profile and address can be edited there at any time.
+      </p>
+      <p>
+        <strong>Sales and prescriptions cannot be deleted individually.</strong> They are your
+        pharmacy’s financial and dispensing history, and the app keeps them so that your reports and
+        stock figures stay correct. They are removed when the account is deleted. If you need a
+        specific record removed sooner, ask us at
+        <a href="mailto:bitwithlab@gmail.com">bitwithlab@gmail.com</a>.
+      </p>
+      <p>
+        The app does not currently include a screen for editing your own name, email address or phone
+        number. Email us and we will correct them for you.
+      </p>
+    </section>
+
+    <!-- 15 -->
+    <section id="children">
+      <h2><span class="num">15</span>Children’s Privacy</h2>
+      <p>
+        Pharmixy is a business tool for licensed pharmacy operators and their staff. It is
+        <strong>intended for adults and is not directed at children</strong>, and it contains nothing
+        designed to appeal to children.
+      </p>
+      <p>
+        We do not knowingly collect personal information from anyone under 18. If we learn that we
+        have, we will delete it promptly. A parent or guardian who believes a child has given us
+        information should contact
+        <a href="mailto:bitwithlab@gmail.com">bitwithlab@gmail.com</a> and we will remove it.
+      </p>
+      <p>
+        This applies to accounts. If your business records happen to include a young patient’s details
+        because you dispensed medicine to them, that data is yours as controller, and the paragraph
+        above does not change your obligations towards it.
+      </p>
+    </section>
+
+    <!-- 16 -->
+    <section id="rights">
+      <h2><span class="num">16</span>Your Rights</h2>
+      <p>
+        We honour the following requests from every user, wherever you live — not only where a law
+        compels us to:
+      </p>
+      <ul>
+        <li><strong>Access</strong> — ask what personal information we hold about you.</li>
+        <li><strong>Correction</strong> — fix anything inaccurate. Your pharmacy’s profile and address you can edit yourself in the app; write to us to correct your own name, email address or phone number.</li>
+        <li><strong>Deletion</strong> — delete your account and its data, as described in <a href="#deletion">section 14</a>.</li>
+        <li><strong>Portability</strong> — obtain a copy of your records in a machine-readable form. The Backup screen produces one on demand, as structured text.</li>
+        <li><strong>Objection and restriction</strong> — object to, or ask us to restrict, a particular processing activity.</li>
+        <li><strong>Withdraw consent</strong> — where we relied on consent, withdraw it, without affecting what was done beforehand.</li>
+        <li><strong>Complain</strong> — raise a concern with your local data protection authority, if your country has one.</li>
+      </ul>
+      <p>
+        To exercise any of these, email
+        <a href="mailto:bitwithlab@gmail.com">bitwithlab@gmail.com</a> from the address registered to
+        your account. We will verify that the request is genuinely yours, respond
+        <strong>within 30 days</strong>, and never charge you for a reasonable request or penalise you
+        for making one.
+      </p>
+      <p>
+        Depending on where you live, you may hold additional statutory rights — for example under the
+        EU or UK GDPR, or under a state privacy law in the United States. Nothing in this policy limits
+        a right the law gives you.
+      </p>
+      <p>
+        Requests about a customer, supplier or patient whose details are in <em>your</em> pharmacy’s
+        records should be made to <strong>you</strong>, as the controller of that data. We will support
+        you in answering them, but we will not act on such a request without your instruction.
+      </p>
+    </section>
+
+    <!-- 17 -->
+    <section id="transfers">
+      <h2><span class="num">17</span>International Data Transfers</h2>
+      <p>
+        Dvexo operates the service from Bangladesh. Our database is hosted by <strong>Supabase</strong>
+        on infrastructure in the <strong>Asia-Pacific (Mumbai, India)</strong> region, and the
+        application server is operated by
+        <span class="todo">[Hosting provider and region — to be confirmed before publication]</span>.
+      </p>
+      <p>
+        This means your information — including your account details and your pharmacy’s records — is
+        stored and processed in a country other than your own, whose data protection laws may differ
+        from those where you live. By using Pharmixy you understand that this transfer is necessary to
+        provide the service.
+      </p>
+      <p>
+        We choose providers that offer contractual and technical protections for the data they hold,
+        require them to process it only on our instructions, and take reasonable steps to see that it
+        is treated according to this policy wherever it is processed. If we move the service to a
+        different region or provider, this section will be updated.
+      </p>
+    </section>
+
+    <!-- 18 -->
+    <section id="links">
+      <h2><span class="num">18</span>Third-Party Links</h2>
+      <p>
+        The app and this page may link to sites we do not control — our own website, Google Play, or
+        the privacy policy of a service provider. Following such a link takes you outside Pharmixy.
+      </p>
+      <p>
+        <strong>We are not responsible for the content, security or privacy practices of any other
+        site.</strong> This policy applies only to Pharmixy and the service behind it. Please read the
+        privacy policy of any site before giving it information.
+      </p>
+      <p>
+        Pharmixy contains no advertising and no embedded third-party content, so it will never open a
+        link you did not deliberately follow.
+      </p>
+    </section>
+
+    <!-- 19 -->
+    <section id="changes">
+      <h2><span class="num">19</span>Changes to This Privacy Policy</h2>
+      <p>
+        We may update this policy as the app changes or the law does. The current version is always
+        published at this address, and the “Last updated” date at the top tells you when it last
+        changed.
+      </p>
+      <p>
+        <strong>If a change is material</strong> — if we begin collecting a new category of data, use
+        your data for a new purpose, or share it with a new kind of recipient — we will publish the
+        updated policy here <strong>before the change takes effect</strong>, and give notice in the app.
+        Where the law requires your consent for the change, we will ask for it rather than assume it.
+      </p>
+      <p>
+        Continuing to use Pharmixy after an update takes effect means you accept the updated policy. If
+        you do not accept it, you can delete your account as described in
+        <a href="#deletion">section 14</a>.
+      </p>
+      <p>Superseded versions are retained by us and available on request.</p>
+    </section>
+
+    <!-- 20 -->
+    <section id="contact">
+      <h2><span class="num">20</span>Contact Information</h2>
+      <p>
+        For any question about this policy, about your data, or to exercise any right described in
+        <a href="#rights">section 16</a>, contact the data controller:
+      </p>
+
+      <div class="contact-grid">
+        <div class="contact-item">
+          <span>Data controller</span>
+          <p><strong>Dvexo</strong></p>
+        </div>
+        <div class="contact-item">
+          <span>Privacy contact</span>
+          <p><a href="mailto:bitwithlab@gmail.com">bitwithlab@gmail.com</a></p>
+        </div>
+        <div class="contact-item">
+          <span>Website</span>
+          <p><a href="https://dvexo.com/">https://dvexo.com/</a></p>
+        </div>
+        <div class="contact-item">
+          <span>Application</span>
+          <p>Pharmixy for Android<br><code>com.pharmacy.management</code></p>
+        </div>
+        <div class="contact-item" style="grid-column:1/-1">
+          <span>Registered address</span>
+          <p><span class="todo">[Dvexo’s registered postal address — to be completed before publication]</span></p>
+        </div>
+      </div>
+
+      <p style="margin-top:1.25rem">
+        We aim to answer every privacy enquiry <strong>within 30 days</strong>. Please write from the
+        email address registered to your account so we can verify who you are; if you cannot, tell us
+        so and we will suggest another way to confirm your identity.
+      </p>
+    </section>
+
+    <!-- 21 -->
+    <section id="dates">
+      <h2><span class="num">21</span>Effective Date &amp; Versions</h2>
+      <div class="tablewrap">
+        <table>
+          <caption>Version history of this policy.</caption>
+          <thead>
+            <tr><th scope="col">Version</th><th scope="col">Date</th><th scope="col">Change</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>1.0</b></td>
+              <td><time datetime="2026-09-03">3 September 2026</time></td>
+              <td>First published, for the initial Google Play release of Pharmixy.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <ul>
+        <li><strong>Effective date:</strong> <time datetime="2026-09-03">3 September 2026</time></li>
+        <li><strong>Last updated:</strong> <time datetime="2026-09-03">3 September 2026</time></li>
+        <li><strong>Applies to:</strong> the Pharmixy Android application <code>com.pharmacy.management</code> and the Dvexo service it connects to.</li>
+      </ul>
+      <p>
+        This document is the complete privacy policy for Pharmixy. It replaces any earlier statement
+        about how we handle your information.
+      </p>
+    </section>
+
+  </main>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <p>© 2026 Dvexo · Pharmixy for Android · <a href="https://dvexo.com/">dvexo.com</a></p>
+    <p class="totop"><a href="#main">Back to top ↑</a></p>
+  </div>
+</footer>
+
+</body>
+</html>
