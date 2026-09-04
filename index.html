@@ -6,14 +6,22 @@
   Host this file at a stable HTTPS URL and enter that URL in Play Console →
   App content → Privacy policy.
 
-  BEFORE PUBLISHING, replace the three highlighted placeholders in the page
-  (search for "todo"):
-    1. Dvexo's registered postal address                 (§ Contact Information)
-    2. The hosted account-deletion URL                   (§ Account & Data Deletion)
-    3. The application server's hosting provider/region  (§ International Transfers)
-  Also set the canonical/og:url below to this file's real address.
+  Published at https://dvexo.github.io/Pharmixy/ — that is the URL to enter in
+  Play Console → App content → Privacy policy.
+
+  STILL TO FILL IN, marked in yellow on the page (search for "todo"):
+    1. Dvexo's registered postal address    (§ Contact Information)
+    2. The Render region the API runs in    (§ International Transfers)
+
+  Filled in since:
+    the account-deletion URL, verified serving 200 at
+      https://pharmixy.onrender.com/account-deletion
+    the application host, Render, which serves that same origin.
 
   Every factual claim in this document was checked against the repository:
+    email sender    Flask Site/backend/app/services/email_service.py  (Brevo)
+    UGC surface     Flask Site/.../pharmacy_service.py :: search_directory
+    link guard      .../core/platform/UrlOpener.android.kt
     permissions      Pharmacy/composeApp/src/androidMain/AndroidManifest.xml
     no SDKs          Pharmacy/gradle/libs.versions.toml
     device id        .../core/platform/DeviceIdentity.kt
@@ -37,12 +45,11 @@
 <meta name="author" content="Dvexo">
 <meta name="theme-color" content="#0f766e" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
-<!-- Set these to this page's real address once hosted. -->
-<link rel="canonical" href="https://dvexo.com/privacy-policy.html">
+<link rel="canonical" href="https://dvexo.github.io/Pharmixy/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Privacy Policy · Pharmixy by Dvexo">
 <meta property="og:description" content="What Pharmixy collects, why, how it is protected, and how to delete your account and data.">
-<meta property="og:url" content="https://dvexo.com/privacy-policy.html">
+<meta property="og:url" content="https://dvexo.github.io/Pharmixy/">
 <meta property="og:site_name" content="Dvexo">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Privacy Policy · Pharmixy by Dvexo">
@@ -343,7 +350,7 @@ footer{
 
     <ul class="meta">
       <li><b>Effective:</b> 3 September 2026</li>
-      <li><b>Last updated:</b> 3 September 2026</li>
+      <li><b>Last updated:</b> 4 September 2026</li>
       <li><b>Applies to:</b> <code>com.pharmacy.management</code></li>
       <li><b>Controller:</b> Dvexo</li>
     </ul>
@@ -376,6 +383,7 @@ footer{
         <li><a href="#rights">Your Rights</a></li>
         <li><a href="#transfers">International Data Transfers</a></li>
         <li><a href="#links">Third-Party Links</a></li>
+        <li><a href="#acceptable-use">Acceptable Use, Content &amp; Safety</a></li>
         <li><a href="#changes">Changes to This Policy</a></li>
         <li><a href="#contact">Contact Information</a></li>
         <li><a href="#dates">Effective Date &amp; Versions</a></li>
@@ -868,9 +876,18 @@ footer{
               <td>Your Google account relationship with Play — installation, updates and Play’s own diagnostics. We do not receive your Google identity.</td>
             </tr>
             <tr>
-              <td><b>Our application hosting provider</b></td>
+              <td><b>Render</b> (Render Services, Inc.)</td>
               <td>Runs the API server</td>
-              <td>Operates the server the app connects to. <span class="todo">[Provider to be confirmed before publication]</span></td>
+              <td>Operates the server the app connects to, as our processor. It handles the traffic
+                between the app and the service; it does not use the data for its own purposes.</td>
+            </tr>
+            <tr>
+              <td><b>Brevo</b> (Sendinblue SAS)</td>
+              <td>Sends the service’s email</td>
+              <td>Receives your <b>email address and name</b>, and the text of the message, so that it
+                can deliver it. Used only for account email — the code that verifies your address when
+                you sign up, and the code that lets you reset a forgotten password. No marketing email
+                is sent, and your address is not added to any mailing list.</td>
             </tr>
           </tbody>
         </table>
@@ -878,7 +895,7 @@ footer{
       <p>
         These providers act on our instructions and are not permitted to use your data for their own
         purposes. There is no other third party in the path: no advertising network, no data broker,
-        no analytics vendor, no email or SMS provider, and no payment gateway.
+        no analytics vendor, no SMS provider, and no payment gateway.
       </p>
 
       <h3>Notifications</h3>
@@ -891,9 +908,21 @@ footer{
 
       <h3>Email and SMS</h3>
       <p>
-        The service currently sends no email and no SMS of any kind — not for verification, not for
-        password resets, and not for marketing. Your email address and phone number are used to
-        identify your account and so that our support team can reply when you contact us.
+        The service sends email for <strong>two purposes only</strong>: the code that verifies your
+        address when you create an account, and the code that lets you set a new password if you have
+        forgotten yours. Both are sent through <b>Brevo</b>, which receives your email address, your
+        name and the message text in order to deliver it.
+      </p>
+      <p>
+        <strong>We send no marketing email.</strong> Your address is not added to any mailing list,
+        not sold, and not shared with anyone but the provider that delivers the message. There is no
+        “unsubscribe” to manage, because there is nothing to unsubscribe from — the only email you
+        receive is one you asked for by signing up or by requesting a reset.
+      </p>
+      <p>
+        <strong>The service sends no SMS at all.</strong> Your phone number is stored to identify
+        your account and so that our support team can reach you if you contact us; no message is sent
+        to it.
       </p>
     </section>
 
@@ -1153,7 +1182,7 @@ footer{
         <strong>from the address registered to the account</strong>, with the subject
         “Account and data deletion request”, so that it is not mistaken for a support question. A
         web request form is also published at
-        <span class="todo">[Deletion request URL — to be published before release]</span>.
+        <a href="https://pharmixy.onrender.com/account-deletion">https://pharmixy.onrender.com/account-deletion</a>.
       </p>
       <p>
         We verify that a request comes from the account holder before acting on it, and complete
@@ -1242,8 +1271,9 @@ footer{
       <p>
         Dvexo operates the service from Bangladesh. Our database is hosted by <strong>Supabase</strong>
         on infrastructure in the <strong>Asia-Pacific (Mumbai, India)</strong> region, and the
-        application server is operated by
-        <span class="todo">[Hosting provider and region — to be confirmed before publication]</span>.
+        application server is operated by <strong>Render</strong> (Render Services, Inc.), in the
+        region shown at <span class="todo">[Render region — confirm in the Render dashboard before
+        publication]</span>.
       </p>
       <p>
         This means your information — including your account details and your pharmacy’s records — is
@@ -1275,11 +1305,146 @@ footer{
         Pharmixy contains no advertising and no embedded third-party content, so it will never open a
         link you did not deliberately follow.
       </p>
+      <p>
+        There is one link the operator of the service can configure — a website or social page shown
+        in Settings. It is checked before it is used: only <code>https://</code> and
+        <code>http://</code> addresses are accepted, so a link cannot be made to run code, open
+        another app, or reach a file on your device. If it is missing or unusable, the button simply
+        does not appear, and nothing opens without your tap.
+      </p>
     </section>
 
     <!-- 19 -->
+    <section id="acceptable-use">
+      <h2><span class="num">19</span>Acceptable Use, Content &amp; Safety</h2>
+
+      <p>
+        Pharmixy is a business record-keeping tool for licensed pharmacy operators and their staff.
+        It is rated for <strong>adults (18+)</strong> and is not designed for or directed at
+        children. This section sets out what the app contains, what you may and may not do with it,
+        and what we do when someone misuses it.
+      </p>
+
+      <h3>What the app contains</h3>
+      <p>
+        Pharmixy ships no violent, hateful, sexual, shocking or extremist content, no gambling or
+        simulated gambling, no user-facing advertising, and no third-party content feed of any kind.
+        Its screens show your own pharmacy’s records — stock, sales, purchases, customers,
+        prescriptions dispensed and reports — and nothing else. There is no chat, no social feed, no
+        public profile and no comment surface.
+      </p>
+
+      <h3>Medicines: what this app is not</h3>
+      <p>
+        Pharmixy <strong>does not sell, advertise, promote, recommend or supply medicines to the
+        public</strong>, and it is not a pharmacy or a marketplace. It records what a licensed
+        pharmacy already holds and has already dispensed, for that pharmacy’s own inventory and
+        regulatory records — including the controlled-substances log a pharmacy is required to keep.
+      </p>
+      <p>
+        It gives <strong>no medical advice</strong>: no diagnosis, no dosage guidance, no treatment
+        recommendation, no symptom checking and no telehealth. Nothing in the app is a substitute
+        for a qualified professional. Dispensing decisions are made by the pharmacist, under the law
+        that applies to them — never by this software.
+      </p>
+      <p>
+        You are responsible for holding the licences your jurisdiction requires and for using the app
+        only within them.
+      </p>
+
+      <h3>Content you enter, and who can see it</h3>
+      <p>
+        Almost everything you type — medicine names, customer records, notes, prescriptions, supplier
+        details — stays inside your own pharmacy’s workspace. It is not published, not shared with
+        other pharmacies, and not visible to other users of the app. See
+        <a href="#sharing">section 11</a>.
+      </p>
+      <p>
+        There is <strong>one exception</strong>, and it is the only content of yours another user can
+        see: your <strong>pharmacy’s trade name and general area</strong> appear in the directory that
+        signed-in users search to find a collaboration partner. Because that name is chosen by you and
+        displayed to others, it is subject to the rules below. Nothing else about your pharmacy — no
+        contact details, no stock, no customers, no staff — is ever included.
+      </p>
+
+      <h3>Acceptable use</h3>
+      <p>You agree not to use Pharmixy to:</p>
+      <ul>
+        <li>enter, as your pharmacy name or anywhere else that another user can see, anything
+          obscene, hateful, harassing, threatening, sexual, violent, extremist, or degrading to a
+          person or group;</li>
+        <li>impersonate another pharmacy, business or person, or misrepresent your licence or
+          affiliation;</li>
+        <li>record or facilitate the supply of medicines outside the law that applies to you,
+          including supply without a valid prescription where one is required;</li>
+        <li>upload unlawful content, or content that infringes someone else’s rights;</li>
+        <li>attempt to reach another pharmacy’s data, defeat the plan limits, probe or overload the
+          service, or interfere with anyone else’s use of it;</li>
+        <li>use the app to store data you have no lawful basis to hold, or to process a patient’s
+          information in breach of the duties you owe them.</li>
+      </ul>
+
+      <h3>Reporting something</h3>
+      <p>
+        If you see a pharmacy name in the directory that breaks these rules, or anything else in the
+        service that looks abusive, unlawful or unsafe, report it to
+        <a href="mailto:bitwithlab@gmail.com?subject=Report%20objectionable%20content">bitwithlab@gmail.com</a>.
+        Tell us what you saw and where. Reports reach a person, not an automated queue.
+      </p>
+      <p>
+        <strong>We aim to review every report within 3 working days</strong>, and sooner where there
+        is a risk to someone’s safety. You do not need an account to report something, and you will
+        not be penalised for reporting in good faith.
+      </p>
+
+      <h3>Moderation and enforcement</h3>
+      <p>
+        Content is reviewed by our operations team when it is reported to us, and pharmacy names are
+        also checked when an account is set up. Where we find a breach, the action we take is
+        proportionate to it, and can include:
+      </p>
+      <ul>
+        <li>removing a pharmacy from the searchable directory, so its name is no longer shown to
+          other users;</li>
+        <li>requiring a name or record to be corrected;</li>
+        <li>suspending the account or a member of its staff, which ends their access immediately;</li>
+        <li>terminating the account, and reporting the matter to the relevant authority where the
+          law requires it.</li>
+      </ul>
+      <p>
+        We will tell the account holder what we did and why, unless the law prevents it, and you can
+        challenge a decision by replying to that message. Suspension does not delete your records:
+        see <a href="#retention">section 12</a> for what is kept and
+        <a href="#deletion">section 14</a> for how to have it erased.
+      </p>
+
+      <h3>Google Play compliance</h3>
+      <p>
+        Pharmixy is distributed through Google Play and is built to comply with the Google Play
+        Developer Programme Policies, including those on Restricted Content — Inappropriate Content,
+        Violence, Hate Speech, Violent Extremism, Sensitive Events, Illegal Activities and Health
+        Content — as well as User Data, Permissions, and Families. In particular:
+      </p>
+      <ul>
+        <li>the app requests only internet and network-state permissions, and no sensitive
+          permission of any kind (<a href="#permissions">section 6</a>);</li>
+        <li>it contains no advertising, analytics, attribution or crash-reporting SDK
+          (<a href="#analytics">section 8</a>);</li>
+        <li>it is declared for an adult audience and is not directed at children
+          (<a href="#children">section 15</a>);</li>
+        <li>you can delete your account and data from inside the app and from the web
+          (<a href="#deletion">section 14</a>).</li>
+      </ul>
+      <p>
+        If you believe the app breaches a Google Play policy, write to us at
+        <a href="mailto:bitwithlab@gmail.com">bitwithlab@gmail.com</a>. You can also report an app to
+        Google directly from its Play Store listing.
+      </p>
+    </section>
+
+    <!-- 20 -->
     <section id="changes">
-      <h2><span class="num">19</span>Changes to This Privacy Policy</h2>
+      <h2><span class="num">20</span>Changes to This Privacy Policy</h2>
       <p>
         We may update this policy as the app changes or the law does. The current version is always
         published at this address, and the “Last updated” date at the top tells you when it last
@@ -1299,9 +1464,9 @@ footer{
       <p>Superseded versions are retained by us and available on request.</p>
     </section>
 
-    <!-- 20 -->
+    <!-- 21 -->
     <section id="contact">
-      <h2><span class="num">20</span>Contact Information</h2>
+      <h2><span class="num">21</span>Contact Information</h2>
       <p>
         For any question about this policy, about your data, or to exercise any right described in
         <a href="#rights">section 16</a>, contact the data controller:
@@ -1337,9 +1502,9 @@ footer{
       </p>
     </section>
 
-    <!-- 21 -->
+    <!-- 22 -->
     <section id="dates">
-      <h2><span class="num">21</span>Effective Date &amp; Versions</h2>
+      <h2><span class="num">22</span>Effective Date &amp; Versions</h2>
       <div class="tablewrap">
         <table>
           <caption>Version history of this policy.</caption>
@@ -1347,6 +1512,16 @@ footer{
             <tr><th scope="col">Version</th><th scope="col">Date</th><th scope="col">Change</th></tr>
           </thead>
           <tbody>
+            <tr>
+              <td><b>1.1</b></td>
+              <td><time datetime="2026-09-04">4 September 2026</time></td>
+              <td>Added <a href="#acceptable-use">Acceptable Use, Content &amp; Safety</a>, covering
+                what the app contains, the rules for the one field other users can see, how to report
+                something, and how we enforce. Corrected the statement that no email is sent: account
+                verification and password-reset codes are sent through Brevo, now listed as a
+                processor. Named Render as the application host and published the account-deletion
+                URL.</td>
+            </tr>
             <tr>
               <td><b>1.0</b></td>
               <td><time datetime="2026-09-03">3 September 2026</time></td>
@@ -1357,7 +1532,7 @@ footer{
       </div>
       <ul>
         <li><strong>Effective date:</strong> <time datetime="2026-09-03">3 September 2026</time></li>
-        <li><strong>Last updated:</strong> <time datetime="2026-09-03">3 September 2026</time></li>
+        <li><strong>Last updated:</strong> <time datetime="2026-09-04">4 September 2026</time></li>
         <li><strong>Applies to:</strong> the Pharmixy Android application <code>com.pharmacy.management</code> and the Dvexo service it connects to.</li>
       </ul>
       <p>
