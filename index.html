@@ -350,7 +350,7 @@ footer{
 
     <ul class="meta">
       <li><b>Effective:</b> 3 September 2026</li>
-      <li><b>Last updated:</b> 4 September 2026</li>
+      <li><b>Last updated:</b> 29 October 2026 (version 1.3)</li>
       <li><b>Applies to:</b> <code>com.pharmacy.management</code></li>
       <li><b>Controller:</b> Dvexo</li>
     </ul>
@@ -397,8 +397,8 @@ footer{
     <div class="card glance">
       <h2>At a glance</h2>
       <ul>
-        <li><b>No ads, no tracking, no analytics.</b> The app contains no advertising, analytics, attribution or crash-reporting SDK of any kind.</li>
-        <li><b>Two permissions.</b> Internet and network-state. Nothing else — no location, camera, contacts, microphone or storage.</li>
+        <li><b>No ads, no tracking, no analytics.</b> The app contains no advertising, analytics, attribution or crash-reporting SDK of any kind. Firebase is used only to deliver notifications.</li>
+        <li><b>Three permissions.</b> Internet, network-state and (Android 13+) notifications, which the system asks you to grant. Nothing else — no location, camera, contacts, microphone or storage.</li>
         <li><b>We never sell your data.</b> It is not shared with anyone for advertising or marketing, ever.</li>
         <li><b>No advertising ID.</b> The app does not read the Advertising ID or any hardware identifier.</li>
         <li><b>You can delete everything.</b> In the app, in a few taps, immediately and permanently.</li>
@@ -709,6 +709,10 @@ footer{
         <li><strong>A device name</strong>, from the manufacturer and model reported by Android — for example “Google Pixel 8”.</li>
         <li><strong>The platform</strong> (“android”) and the <strong>app version</strong> you are running.</li>
         <li><strong>The time the device last contacted the service.</strong></li>
+        <li><strong>A push token</strong>, only if you allow notifications — issued by Firebase Cloud Messaging
+          to this installation so our service can deliver a notice to it. It identifies the device for
+          delivery and nothing else; it is retired when you sign out, turn notifications off or delete
+          your account.</li>
       </ul>
       <h3>Server logs</h3>
       <p>Like any internet service, our servers keep two kinds of log:</p>
@@ -738,7 +742,7 @@ footer{
     <!-- 6 -->
     <section id="permissions">
       <h2><span class="num">6</span>App Permissions</h2>
-      <p>The app declares exactly two Android permissions, and no others:</p>
+      <p>The app declares three Android permissions, and no others. The third, <code>android.permission.POST_NOTIFICATIONS</code>, exists only on Android 13 and later, is requested through the system prompt the first time the app offers notifications, and can be refused or revoked at any time without losing any feature except the notification itself:</p>
 
       <div class="tablewrap">
         <table>
@@ -791,7 +795,9 @@ footer{
         <li>your pharmacy’s records — medicines, batches, sales, purchases, customers, suppliers, prescriptions and expenses;</li>
         <li>your session tokens;</li>
         <li>changes made offline, waiting to be sent;</li>
-        <li>a sync position marker, your subscription status and your app preferences; and</li>
+        <li>a sync position marker, your subscription status and your app preferences;</li>
+        <li>a short-lived copy of our current announcements and support contact details, so the
+          app does not download them again on every open; and</li>
         <li>the installation identifier described above.</li>
       </ul>
       <p>
@@ -821,9 +827,10 @@ footer{
         </p>
       </div>
       <p>
-        The app’s entire third-party code consists of the Android platform libraries (AndroidX), the
-        Jetpack Compose user-interface toolkit and the Kotlin standard libraries. These render the
-        interface and run the code; none of them collects data or contacts a server of its own.
+        The app’s third-party code consists of Firebase Cloud Messaging (used only to deliver
+        notifications, see <a href="#thirdparty">section 9</a>), the Android platform libraries
+        (AndroidX), the Jetpack Compose user-interface toolkit and the Kotlin standard libraries.
+        None of them reports how you use the app.
       </p>
       <p>
         On our side, we keep the routine access and error logs described in
@@ -895,15 +902,28 @@ footer{
       <p>
         These providers act on our instructions and are not permitted to use your data for their own
         purposes. There is no other third party in the path: no advertising network, no data broker,
-        no analytics vendor, no SMS provider, and no payment gateway.
+        no SMS provider, and no payment gateway. Google Firebase Cloud Messaging (Google LLC) is the one further provider, used only to deliver notifications to devices that allowed them.
       </p>
 
       <h3>Notifications</h3>
       <p>
-        Notifications in Pharmixy — low-stock warnings, expiry alerts and similar — are generated by
-        our own service and shown <strong>inside the app</strong>. The app does not currently register
-        for Android push notifications and includes no push messaging library, which is why it needs no
-        notification permission. If that changes, this policy will be updated before the feature ships.
+        Low-stock warnings, expiry alerts and similar are generated by our own service and shown
+        <strong>inside the app</strong>. In addition, if you allow notifications, the app registers
+        with Firebase Cloud Messaging and we may deliver a notice to your device — a service
+        announcement, a confirmed payment — with a sound you can silence in Android’s notification
+        settings. We also publish announcements that appear as a dismissible card when the app opens;
+        you can dismiss each one and it returns, if at all, only as often as it is set to. Nothing in
+        an announcement plays audio or video on its own: a video is a link you choose to open.
+      </p>
+      <p>
+        The device’s notification token is used for delivery only. It is removed when you sign out or
+        delete your account. Turning notifications off in Android stops anything from being shown;
+        the token is then removed at your next sign-out.
+      </p>
+      <p>
+        An announcement can include a picture. The app downloads it, over HTTPS only, from the address
+        we set when publishing it; like any web request, that tells the server holding the picture
+        your device’s IP address. No account or pharmacy information is sent with it.
       </p>
 
       <h3>Email and SMS</h3>
@@ -1426,8 +1446,8 @@ footer{
         Content — as well as User Data, Permissions, and Families. In particular:
       </p>
       <ul>
-        <li>the app requests only internet and network-state permissions, and no sensitive
-          permission of any kind (<a href="#permissions">section 6</a>);</li>
+        <li>the app requests only internet, network-state and (optionally) notification permissions,
+          and no sensitive permission of any kind (<a href="#permissions">section 6</a>);</li>
         <li>it contains no advertising, analytics, attribution or crash-reporting SDK
           (<a href="#analytics">section 8</a>);</li>
         <li>it is declared for an adult audience and is not directed at children
@@ -1513,6 +1533,22 @@ footer{
           </thead>
           <tbody>
             <tr>
+              <td><b>1.3</b></td>
+              <td><time datetime="2026-10-29">29 October 2026</time></td>
+              <td>Stated exactly when the notification token is removed (sign-out or account
+                deletion), and described pictures in announcements and the short-lived on-device
+                copy of announcements and support contact details. Nothing new is collected.</td>
+            </tr>
+            <tr>
+              <td><b>1.2</b></td>
+              <td><time datetime="2026-10-28">28 October 2026</time></td>
+              <td>Added push notifications (Firebase Cloud Messaging, behind the Android notification
+                permission) and in-app announcements published by us. Updated the permissions list
+                and the list of service providers accordingly. The app still contains no
+                analytics or crash-reporting SDK. Published the terms of service at
+                <a href="https://pharmixy.app/terms">pharmixy.app/terms</a>.</td>
+            </tr>
+            <tr>
               <td><b>1.1</b></td>
               <td><time datetime="2026-09-04">4 September 2026</time></td>
               <td>Added <a href="#acceptable-use">Acceptable Use, Content &amp; Safety</a>, covering
@@ -1532,7 +1568,7 @@ footer{
       </div>
       <ul>
         <li><strong>Effective date:</strong> <time datetime="2026-09-03">3 September 2026</time></li>
-        <li><strong>Last updated:</strong> <time datetime="2026-09-04">4 September 2026</time></li>
+        <li><strong>Last updated:</strong> <time datetime="2026-10-28">28 October 2026</time></li>
         <li><strong>Applies to:</strong> the Pharmixy Android application <code>com.pharmacy.management</code> and the Dvexo service it connects to.</li>
       </ul>
       <p>
